@@ -6,17 +6,23 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "sensio/framework-extra-bundle": "^5.2",
+        "symfony/asset": "*",
         "symfony/console": "*",
         "symfony/flex": "^1.1",
+        "symfony/form": "*",
         "symfony/framework-bundle": "*",
         "symfony/maker-bundle": "^1.6",
+        "symfony/orm-pack": "^1.0",
+        "symfony/security-bundle": "*",
         "symfony/twig-bundle": "*",
+        "symfony/validator": "*",
         "symfony/var-dumper": "*",
         "symfony/web-server-bundle": "*",
         "symfony/yaml": "*"
     },
     "require-dev": {
-        "symfony/dotenv": "*"
+        "symfony/dotenv": "*",
+        "symfony/profiler-pack": "^1.0"
     },
     "config": {
         "preferred-install": {
