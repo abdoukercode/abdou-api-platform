@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -73,6 +74,15 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
+        //return $this->redirectToRoute('login');
+    }
 
+    /**
+     * @Route("/api")
+     * @return Response
+     */
+    public function api()
+    {
+        return new Response(sprintf('Logged in as %s', $this->getUser()->getUsername()));
     }
 }

@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @UniqueEntity(fields="username", message="Username already taken")
  */
 class User implements UserInterface
+
 {
     /**
      * @ORM\Id
@@ -55,7 +56,7 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->roles = array('ROLE_ADMIN');
+        $this->roles = array('ROLE_SUPER_ADMIN');
     }
 
     // other properties and methods
@@ -115,4 +116,7 @@ class User implements UserInterface
     public function eraseCredentials()
     {
     }
+
+
+
 }

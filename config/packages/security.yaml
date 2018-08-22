@@ -16,31 +16,62 @@ security:
         in_memory:
             memory:
                 users:
-                    abdou:
-                        password:  $2y$12$q7uOO9jr4qSr3PHaGacipea2krsD4Lh.H6M6vAwR.XWuB/OTyBhdy
-                        roles: 'ROLE_ADMIN'
                     super:
-                        password:  $2y$12$MbZahiAzIbRwGIEoSqGa4OYAcovBfT7VXq8Rkaj/iNUXenudF3Z/O
+                        password: $2y$12$QcLtXZX9FfaoGUaOfLGAAudOSfzleepJbBH6yURlosGCki9iwejJ2
                         roles: 'ROLE_SUPER_ADMIN'
         db_provider:
             entity:
                 class: App\Entity\User
                 property: email
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
         main:
-            anonymous: true
+            pattern:   ^/
             provider: chain_provider
+            #            stateless: true
+            anonymous: true
             form_login:
                 login_path: login
                 check_path: login
             logout:
-                path:   /logout
-                target: /
+                path:  /logout
+                target: /login
+        login:
+            pattern:  ^/login
+            stateless: true
+            anonymous: true
+            provider: db_provider
+            json_login:
+                check_path: /login_check
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        api:
+            pattern:  ^/api
+            stateless: true
+            anonymous: false
+            provider: db_provider
+            guard:
+                authenticators:
+                - lexik_jwt_authentication.jwt_token_authenticator
 
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        register:
+            pattern:  ^/register
+            stateless: true
+            anonymous: true
+
+
+
+#            guard:
+#                authenticators:
+#                - lexik_jwt_authentication.jwt_token_authenticator
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user_registration, roles: ROLE_SUPER_ADMIN }
-        - { path: ^/, roles: ROLE_ADMIN}
+        - { path: ^/api, roles: [ROLE_ADMIN] }
+        - { path: ^/, roles: [ROLE_ADMIN]}
+
