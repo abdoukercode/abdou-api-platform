@@ -1,4 +1,6 @@
 {
+    "name":" abdou-api-platform",
+  "description":"this is test package",
     "type": "project",
     "license": "proprietary",
     "require": {
