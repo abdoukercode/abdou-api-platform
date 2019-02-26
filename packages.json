@@ -1,11 +1,11 @@
 {
-    "package": {
-        "name": "vendor/abdou-api-platform",
-        "version": "1.0.0",
-        "source": {
-          "url": "/home/abdou/Bureau/Base/abdou-api-platform/.git",
-          "type": "git",
-          "reference": "master"
-        }
+  "package": {
+    "name": "vendor/abdou-api-platform",
+    "version": "1.0.0",
+    "source": {
+      "url": "/home/abdou/Bureau/Base/abdou-api-platform/.git",
+      "type": "git",
+      "reference": "master"
     }
+  }
 }
